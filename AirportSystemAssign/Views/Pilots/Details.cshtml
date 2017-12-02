@@ -1,0 +1,39 @@
+﻿@model AirportSystemAssign.Models.Pilot
+@using AirportSystemAssign.Models;
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="whitetext">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Pilot</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AirplaneTypes)
+            </dt>
+
+            <dd>
+                @foreach (AirplaneType item in Model.AirplaneTypes)
+            {
+                    <p>@item.Name</p>
+                }
+                @*@Html.DisplayFor(model => model.AirplaneType.Name)*@
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

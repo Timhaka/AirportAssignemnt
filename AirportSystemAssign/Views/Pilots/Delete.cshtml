@@ -1,0 +1,45 @@
+﻿@model AirportSystemAssign.Models.Pilot
+@using AirportSystemAssign.Models;
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="whitetext">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Pilot</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name) 
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>
+
+@foreach (Airplane item in ViewBag.airlist)
+{
+    if (item.PilotId == Model.Id || item.CoPilotId == Model.Id)
+    {
+        <script language="javascript" type="text/javascript">
+            alert("Cant Delate, this pilot is assign to an airplane! Returning to Pilotlist"); window.location = ('/Pilots/Index');
+        </script>
+    }
+}

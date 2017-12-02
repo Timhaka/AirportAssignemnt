@@ -1,0 +1,49 @@
+﻿@model AirportSystemAssign.Models.Airplane
+
+@{
+    ViewBag.Title = "RemovePilots";
+}
+
+
+
+<div class="whitetext">
+
+
+    <h3>Would you like to remove the pilots from @Model.Name?</h3>
+
+
+ 
+    <form action="RemovePilots" method="post">
+        @if (Model.Pilot != null || Model.CoPilot != null)
+        {
+            @Html.AntiForgeryToken()
+        <div class="col-md-3 main-col sidebar">
+            Pilot Name: @Model.Pilot.Name
+            @Html.ValidationMessageFor(model => model.PilotId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-3 sidebar">
+            Co-Pilot Name :@Model.CoPilot.Name
+            @Html.ValidationMessageFor(model => model.CoPilotId, "", new { @class = "text-danger" })
+        </div>
+        }
+         <input type="hidden" name="Name" value="@Model.Name" />
+        <input type="hidden" name="Id" value="@ViewBag.AirplaneId" />
+        <input type="hidden" name="Size" value="@ViewBag.Size" />
+        <input type="hidden" name="MaxNrOfPassengers" value="@ViewBag.maxNumPass" />
+        <input type="hidden" name="AirplaneTypeId" value="@ViewBag.Type" />
+        <input type="hidden" name="AirportId" value="@ViewBag.Airport" />
+
+        <div class="clearfix"></div>
+
+       
+        <input class="btn btn-success RemovePilotButton btn-lg" type="submit" name="answer" value="Yes" />
+        <input class="btn btn-danger RemovePilotButton btn-lg" type="submit" name="answer" value="No" />
+
+    </form>
+  
+</div>
+
+@if (Model.PilotId == null || Model.CoPilotId == null)
+{
+    <script language="javascript" type="text/javascript">alert("No pilots Assign to @Model.Name! Returning to Airplanes"); window.location = ('/Airplanes/Index');</script>
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AirportSystemAssign.Models.Airport>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container sidebar">
+    <div>
+        <h2 class="whitetext">Airports</h2>
+        <a class="addlink"  href="/Airports/Create"><span class="glyphicon glyphicon-plus"></span>Add Airport</a>
+    </div>
+
+
+    <div class="col-md-4 main-col">
+        @foreach (var item in Model)
+        {
+            <div class="AirportBox" onclick="window.location = '/Airports/Details/@item.Id'">
+                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.City)
+                <a class="iconlinks" href="/Airports/Delete/@item.Id"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="iconlinks" href="/Airports/Edit/@item.Id"><span class="glyphicon glyphicon-pencil"></span></a>
+                <br />
+            </div>
+        }
+    </div>
+
+    <div class="col-md-4">
+        <img class="image" src="~/Image/Airport.jpg" alt="Airport" />
+    </div>
+
+    <div class="col-md-4 sidebar">
+        <div class="AirportBox" onclick="window.location = '/Airplanes/index'">
+            <p  id="para">All Airplanes information</p> 
+            <br />
+        </div>
+        <div class="AirportBox" onclick="window.location = '/Pilots/index'">
+            <p  id="para">All Pilots Information</p>
+            <a class="iconlinks" href="/Pilots/Create"><span class="glyphicon glyphicon-plus"></span></a>
+            <br />
+        </div>
+        <div class="AirportBox" onclick="window.location = '/AirplaneTypes/index'">
+            <p id="para">All AirplaneTypes</p>
+            <a class="iconlinks" href="/AirplaneTypes/Create"><span class="glyphicon glyphicon-plus"></span></a>
+            <br />
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+</div>
+
+

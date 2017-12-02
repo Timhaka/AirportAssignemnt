@@ -1,0 +1,93 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: black;
+    /*background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('../Image/blue_world_map-wallpaper-1920x1080.jpg');*/
+    background-image: url('../Image/blue_world_map-wallpaper-1920x1080.jpg');
+    background-size: cover;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.AirportBox {
+    padding: 10px;
+    border: 2px solid grey;
+    color: white;
+    font-family: 'Comic Sans MS';
+    margin: 10px;
+    cursor: pointer;
+
+    /*another test*/
+    background-color: black;
+    border-radius:10px;
+    transition: background linear 0.3s;
+}
+
+.AirportBox:hover {
+        background-color: grey;
+       
+        /*background-image: url('../Image/blue_world_map-wallpaper-1920x1080.jpg');*/
+}
+
+.main-col {
+    padding: 10px;
+    border: 2px solid white;
+    margin-top:10px;
+    border-radius:20px;
+    
+
+
+    /*remove this if you want it back to normal*/   
+    /*background-color:black;
+    opacity:0.3;*/
+}
+
+.sidebar {
+    padding: 10px;
+    border: 2px solid white;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.image{
+    width:100%;
+    margin-top:10px;
+}
+
+.iconlinks {
+    float: right;
+    margin-left: 10px;
+    color:white;
+}
+
+.addlink{
+    color:white;
+    margin:10px;
+}
+
+#para {
+    float: left;
+}
+
+.whitetext{
+    color:white;
+    font-family: 'Comic Sans MS'; 
+}
+
+.RemovePilotButton {
+    
+    color: black;
+    margin: 20px;
+}
+

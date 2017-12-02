@@ -1,0 +1,95 @@
+﻿@model AirportSystemAssign.Models.Airplane
+@using AirportSystemAssign.Models;
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="whitetext">Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal whitetext">
+        <h4>Airplane</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxNrOfPassengers, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxNrOfPassengers, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxNrOfPassengers, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AirportId, "AirportId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AirportId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="hidden" name="PilotId" value="@ViewBag.pilot" />
+        <input type="hidden" name="CoPilotId" value="@ViewBag.Copilot" />
+        <input type="hidden" name="oldairplanetypeId" value="@ViewBag.TempPlanetype" />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AirplaneTypeId, "AirplaneTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AirplaneTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AirplaneTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+
+    @if (ViewBag.AirportId == null)
+    {
+        @Html.ActionLink("Backtest to List", "Index", "Airplanes")
+
+      
+    }
+    @if (ViewBag.AirportId != null)
+    {
+        @Html.ActionLink("Back to Airport", "Details", "Airports", new { id = ViewBag.AirportId }, null)
+    }
+</div>*@
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Details", "Airports", new { id = Model.AirportId }, null)
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

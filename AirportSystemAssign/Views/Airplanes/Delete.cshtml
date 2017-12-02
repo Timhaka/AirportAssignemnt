@@ -1,0 +1,22 @@
+﻿@model AirportSystemAssign.Models.Airplane
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="whitetext">Delete</h2>
+
+<h3 class="whitetext">Are you sure you want to delete this?</h3>
+<div class="whitetext">
+    <h4>Airplane @Model.Name</h4>
+    <hr />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Airport", "Details", "Airports", new { id = Model.AirportId }, null)
+        </div>
+    }
+</div>

@@ -1,0 +1,130 @@
+﻿@model AirportSystemAssign.Models.Airplane
+@using System.Web.Mvc;
+@using AirportSystemAssign.Models;
+
+@{
+    ViewBag.Title = "TransferAirplane";
+}
+
+
+
+<h2 class="whitetext">Transfer Airplane </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal whitetext">
+        <h4>@Html.DisplayName(Model.Name)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <input type="hidden" name="Name" value="@Model.Name" />
+        <input type="hidden" name="Name" value="@ViewBag.Airplaneid" />
+        <input type="hidden" name="Size" value="@ViewBag.Size" />
+        <input type="hidden" name="MaxNrOfPassengers" value="@ViewBag.maxNumPass" />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AirportId, "Current Airport", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+             @*@Html.DisplayFor(model => model.Airport, new { htmlAttributes = new { @class = "form-control" } })*@
+             @Html.DisplayName(Model.Airport.Name)
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AirportId, "Next destination", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <select class="form-control" name="AirportId" >
+                    @foreach (Airport item in ViewBag.templist)
+                    {
+                        if (item.Id != Model.AirportId)
+                        {
+                            <option name ="AirportId" value="@item.Id">@Html.DisplayName(item.Name)</option>
+                            @Html.ValidationMessageFor(model => model.AirportId, "", new { @class = "text-danger" })
+                        }
+           
+                    }
+       
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PilotId, "Pilot", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <select class="form-control" name="PilotId" id="select1">
+                    <option value="" selected disabled hidden>Choice a Pilot</option>
+                    @foreach (Pilot item in ViewBag.pilotTemplist)
+                    {
+                        if (item.AirplaneTypes.Contains(Model.AirplaneType))
+                        {
+                            <option name="Pilot" value="@item.Id">@Html.DisplayName(item.Name)</option>
+                        @Html.ValidationMessageFor(model => model.PilotId, "", new { @class = "text-danger" })
+                        }
+     
+                    }
+       
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CoPilotId, "Co-Pilot", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <select class="form-control" name="CoPilotId" id="select2">
+                    <option value="" selected disabled hidden>Choice a Co-Pilot</option>
+                    @foreach (Pilot item in ViewBag.pilotTemplist)
+                    {
+                        if (item.AirplaneTypes.Contains(Model.AirplaneType))
+                        {
+                            <option name="CoPilot" value="@item.Id">@Html.DisplayName(item.Name)</option>
+                            @Html.ValidationMessageFor(model => model.CoPilotId, "", new { @class = "text-danger" })
+                        }
+                     
+                    }
+  
+                </select>
+
+            </div>
+        </div>
+
+
+            <div class="col-md-10">
+                <input type="hidden" name="AirplaneTypeId" value="@Model.AirplaneTypeId" />
+            </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Transfer" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Details", "Airports", new { id = Model.AirportId }, null)
+</div>
+
+@if (ViewBag.pilotTempList.Count == 0 || ViewBag.pilotTempList.Count == 1)
+{
+   <script language="javascript" type="text/javascript">alert("No pilots avalible! Returning to Airport"); window.location = ('/Airports/Index');</script>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/DropdownChange.js"></script>
+
